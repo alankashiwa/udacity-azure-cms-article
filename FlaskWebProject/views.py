@@ -38,7 +38,7 @@ def new_post():
         post = Post()
         post.save_changes(
             form, request.files['image_path'], current_user.id, new=True)
-        app.logger.info('Post created!')
+        app.logger.info('★Post created!')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
@@ -55,7 +55,7 @@ def post(id):
     form = PostForm(formdata=request.form, obj=post)
     if form.validate_on_submit():
         post.save_changes(form, request.files['image_path'], current_user.id)
-        app.logger.info('Post edited!')
+        app.logger.info('★Post edited!')
         return redirect(url_for('home'))
     return render_template(
         'post.html',
@@ -74,11 +74,11 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            app.logger.error('invalid username or password')
+            app.logger.error('★invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         # Login Success
-        app.logger.info('Successfully logged in.')
+        app.logger.info('★Successfully logged in.')
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
@@ -94,7 +94,7 @@ def authorized():
     if request.args.get('state') != session.get("state"):
         return redirect(url_for("home"))  # No-OP. Goes back to Index page
     if "error" in request.args:  # Authentication/Authorization failure
-        app.logger.error('Authentication/authorization failure')
+        app.logger.error('★Authentication/authorization failure')
         return render_template("auth_error.html", result=request.args)
     if request.args.get('code'):
         cache = _load_cache()
@@ -118,7 +118,7 @@ def authorized():
 @app.route('/logout')
 def logout():
     logout_user()
-    app.logger.info('Successfully logged out.')
+    app.logger.info('★Successfully logged out.')
     if session.get("user"):  # Used MS Login
         # Wipe out user and its token cache from session
         session.clear()
