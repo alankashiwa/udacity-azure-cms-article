@@ -7,17 +7,17 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
     BLOB_ACCOUNT = os.environ.get(
-        'BLOB_ACCOUNT') or 'udacitycmsproject'
+        'BLOB_ACCOUNT') or ''
     BLOB_STORAGE_KEY = os.environ.get(
-        'BLOB_STORAGE_KEY') or '/8Wxo/TilwmkJrZ3AZAzj+Ozxg9kTTnvW9asJRxjWgUDP09Uh4o6IDyUMhQSb4YmzlVObFeIrXJY1S8nf4FwLw=='
+        'BLOB_STORAGE_KEY') or ''
     BLOB_CONTAINER = os.environ.get(
-        'BLOB_CONTAINER') or 'images'
+        'BLOB_CONTAINER') or ''
 
     SQL_SERVER = os.environ.get(
         'SQL_SERVER') or 'udacity-sql-server.database.windows.net'
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'article_cms'
-    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'alanadmin'
-    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or '!alan333'
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or ''
+    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or ''
+    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or ''
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + \
         SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + \
@@ -26,7 +26,7 @@ class Config(object):
 
     ### Info for MS Authentication ###
     ### As adapted from: https://github.com/Azure-Samples/ms-identity-python-webapp ###
-    CLIENT_SECRET = "JjV~Y~K5R3FbsgJ_H-fm72W4jsb7FPZ-0N"
+    CLIENT_SECRET = ""
     # In your production app, Microsoft recommends you to use other ways to store your secret,
     # such as KeyVault, or environment variable as described in Flask's documentation here:
     # https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
@@ -38,7 +38,7 @@ class Config(object):
     AUTHORITY = "https://login.microsoftonline.com/common"
     # AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
 
-    CLIENT_ID = "2defe7df-cbcc-40ff-8f5e-01d223217e36"
+    CLIENT_ID = ""
 
     # Used to form an absolute URL; must match to app's redirect_uri set in AAD
     REDIRECT_PATH = "/getAToken"
